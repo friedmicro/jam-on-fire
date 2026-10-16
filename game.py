@@ -90,7 +90,7 @@ def switch_speaker(current, change):
     pygame.display.update(current.rect)
 
 #For the goal audio, this pauses background music and plays the unaltered pieces at once.
-#Lucas was super happy that we could do this instead of having to combine them on the deck lol
+#Lucia was super happy that we could do this instead of having to combine them on the deck lol
 def play_original():
     channel.pause()
     vocal1.play()
@@ -223,8 +223,8 @@ def mouse_click(pos):
 def event_loop():
     while True:
         for event in pygame.event.get():
-            if event.type == 5:
-                mouse_click(pygame.mouse.get_pos())
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_click(event.pos)
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 size = width, height = 320, 240
@@ -233,7 +233,7 @@ screen = pygame.display.set_mode(size, pygame.NOFRAME)
 posX = [width*0.25+25, width*0.5+10, width*0.75-5]
 posY = [height*0.3+20, height*0.5+20, height*0.7+20]
 
-cwd = os.path.abspath('res/')
+cwd = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'res') + os.sep
 #The bg image and below two lines were literally created in the last 30 minutes
 background = pygame.image.load(cwd + "/Background.png")
 screen.blit(background, background.get_rect())
@@ -266,9 +266,9 @@ intro = pygame.mixer.Sound(file=cwd + "/Intro.wav")
 vocal1 = pygame.mixer.Sound(file=cwd + "/Alex-Vocal-1.wav")
 vocal2 = pygame.mixer.Sound(file=cwd + "/Alex-Vocal-2.wav")
 vocal3 = pygame.mixer.Sound(file=cwd + "/Alex-Vocal-3.wav")
-beat1 = pygame.mixer.Sound(file=cwd + "/Beat-loop-1.ogg")
-beat2 = pygame.mixer.Sound(file=cwd + "/Beat-loop-2.wav")
-beat3 = pygame.mixer.Sound(file=cwd + "/Beat-loop-3.wav")
+beat1 = pygame.mixer.Sound(file=cwd + "/Beat-Loop-1.ogg")
+beat2 = pygame.mixer.Sound(file=cwd + "/Beat-Loop-2.wav")
+beat3 = pygame.mixer.Sound(file=cwd + "/Beat-Loop-3.wav")
 instrument1 = pygame.mixer.Sound(file=cwd + "/Instrument-1.ogg")
 instrument2 = pygame.mixer.Sound(file=cwd + "/Instrument-2.wav")
 instrument3 = pygame.mixer.Sound(file=cwd + "/Instrument-3.wav")
